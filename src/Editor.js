@@ -18,12 +18,10 @@ import Select from '@material-ui/core/Select'
 import Add from '@material-ui/icons/Add'
 import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
-import InfoOutline from '@material-ui/icons/InfoOutline'
+import InfoOutlined from '@material-ui/icons/InfoOutlined'
 import IconButton from '@material-ui/core/IconButton';
 
 import BaseTable, { BASE_EDITOR_PROPTYPES } from './BaseTable'
-
-import ReactDOM from 'react-dom'
 
 import * as Schema from './Schema';
 import { getSchemaTypeIdentifier, SchemaPopover } from './SchemaView'
@@ -123,10 +121,11 @@ export class ArrayEditor extends React.Component {
 
     return (
       <Paper>
-        <ArrayToolbar
+        <ArrayToolbar title={this.props.title}
           schema={this.props.type}
           onDeleteAll={() => this.handleDeleteElements(Array.from(this.state.selected.keys()))}
           size={this.state.selected.size} />
+
         <BaseTable
           type={this.props.type}
           className={cx(BaseClassnames.Editor('--array'), this.props.className)}
@@ -202,8 +201,8 @@ const BasicToolbar = props => {
   return <Toolbar className={`${toolbarDefault}`}>
     <SchemaPopover schema={props.schema}>
       <Div display="inline-flex" alignItems="center" cursor="default">
-        <Div marginRight="5px"><Typography variant="title">{ props.title }</Typography></Div>
-        <InfoOutline style={{ fontSize: '1em' }}/>
+        <Div marginRight="5px"><Typography variant="h6">{ props.title }</Typography></Div>
+        <InfoOutlined style={{ fontSize: '1em' }}/>
       </Div>
     </SchemaPopover>
   </Toolbar>
@@ -215,8 +214,9 @@ BasicToolbar.propTypes = {
 }
 
 const ArrayToolbar = props => {
+  // console.log('ArrayToolbar ', props);
   if (props.size === 0) {
-    return <BasicToolbar schema={props.schema} title="Array" />
+    return <BasicToolbar schema={props.schema} title={props.title} />
   }
 
   return <Toolbar className={`${toolbarDefault} ${toolbarSelected}`}>
@@ -333,7 +333,7 @@ class AddObjectRow extends React.Component {
 
   // Renders the "add element" button
   addButton = () => {
-    return <Button color="primary" variant="raised" onClick={this.add}>
+    return <Button color="primary" variant="contained" onClick={this.add}>
       New
       <Add/>
     </Button>

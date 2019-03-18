@@ -5,6 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "build": "neutrino build library",
+		"watch": "watch 'yarn build' ./src",
     "build:examples": "neutrino build",
     "start": "neutrino start",
     "test": "neutrino test",
@@ -47,6 +48,7 @@
     "glamorous": "^4.12.1",
     "prop-types": "^15.6.1",
     "ramda": "^0.26.0",
-    "react-addons-update": "^15.6.2"
+    "react-addons-update": "^15.6.2",
+    "watch": "^1.0.2"
   }
 }
